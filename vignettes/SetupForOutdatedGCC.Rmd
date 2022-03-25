@@ -1,0 +1,97 @@
+---
+title: "Reticulate and old GCC"
+author: "Matt Paul - mpaul@rockefeller.edu"
+date: "`r format(Sys.Date(), '%m/%d/%Y')`"
+package: Herper
+output:
+ BiocStyle::html_document:
+  number_sections: yes
+  toc: true
+vignette: >
+  %\VignetteIndexEntry{Quick Start}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Working on a remote system (i.e. HPC) with an old GCC compiler
+
+We use the *reticulate* package to allow *Herper* to communicate with conda through R. The *reticulate* package depends on the *RcppTOML*, which in turn require a GCC compiler that is \>= 4.9. Though this GCC version was published in 2014, older systems may not have updated their GCC since prior to this time. As a result, when you try to install Herper you will get an error as you cannot install the dependencies *reticulate*.
+
+We can circumvent these issues in 2 steps:
+
+1.  Install a new GCC
+2.  Direct R to use this new GCC compiler
+
+Here we explain how we did this on our HPC (though there are alternatives).
+
+## 1. Install a new GCC compiler
+
+Most of the time when facing this problem it will be on an institutional system like a HPC. As a result you may not have root access. The new GCC will have to be installed just for the local user.
+
+**A. Download the installer**
+
+First you must download the GCC tarball. GCC has many mirrors [available](https://gcc.gnu.org/mirrors.html). Here we are downloading the newest version at the time: gcc-11.2.0. You will want to make sure that you download or move the GCC tarball into a sensible and stable location.
+
+```{sh, eval=F}
+wget --no-check-certificate https://bigsearcher.com/mirrors/gcc/releases/gcc-11.2.0/gcc-11.2.0.tar.gz
+
+```
+
+**B. Uncompress and Configure**
+
+Once you have the tarball, it needs to be uncompressed. You must then change the working directory to be in the this newly uncompressed directory.
+
+Depending on your set up you may first have to install some additional prerequisites using the provided script *download_prerequisites*. If you are unsure you can try and configure first, and see if it throws an error due to missing GMP, MPFR and MPC.
+
+At this point we must configure the installation. This is the important step where you decide on the location of your install, which you will do locally to circumvent root restrictions. You will want to replace the "--prefix" path with something appropriate for you.
+
+```{sh, eval=F}
+tar zxf gcc-11.2.0.tar.gz
+cd gcc-11.2.0
+./contrib/download_prerequisites
+./configure --prefix=/rugpfs/fs0/brc/scratch/mpaul/software/gcc --disable-multilib
+
+```
+
+**C. Make and Install**
+
+Lastly, you need to just make and install GCC. These steps can take some time.
+
+```{sh, eval=F}
+make
+make install
+```
+
+## 2. Direct R to use this new GCC compiler
+
+Now that you have your new GCC, you need to tell R where it is. There are two ways to do this depending if you want it just work for a single project, or all subsequent projects.
+
+**A. Single Project**
+
+When working on a single R project you can create/modify the .Renviron file. In this file you can provide the path to the new GCC.
+
+Before you do this you will need to get the current values of your PATH and LD_LIBRARY_PATH. An easy way to get these is to open up an R session and use `{r, eval=F} Sys.getenv("PATH")` and `{r, eval=F} Sys.getenv("LD_LIBRARY_PATH")` .
+
+You can then open up your .Renviron file (if it doesn't exist you can create an empty file with this name). You can then add in the the LD_LIBRARY_PATH, LD_INCLUDE_PATH and PATH pointing to the libraries and binaries in your new GCC install. You will also need to append the saved PATH and LD_LIBRARY_PATH values onto their respective paths.
+
+```{sh, eval=F}
+LD_LIBRARY_PATH=/lustre/fs4/brc/scratch/mpaul/software/gcc/lib:/lustre/fs4/brc/scratch/mpaul/software/gcc/lib64:/lustre/fs4/brc/scratch/mpaul/software/gcc/libexec:[current LD_LIBRARY_PATH]
+
+LD_INCLUDE_PATH=/lustre/fs4/brc/scratch/mpaul/software/gcc/include
+
+PATH=/lustre/fs4/brc/scratch/mpaul/software/gcc/bin:[current PATH]
+
+```
+
+Once this is done, whenever you open R in this directory it will find the required GCC for the installation of 'reticulate'.
+
+**B. Whole System**
+
+Only do this if you know what you're doing.
+
+You can update the paths as above, but do this on the global level by modifying your \~/.bash_profile. This will change the GCC used for all processes on your system though so must be done with care and consideration.

@@ -1,0 +1,24 @@
+output_dir: '.'
+navbar:
+  title: Herper
+  left:
+  - text: Home
+    href: index.html
+  - text: Guides
+    menu:
+    - text: Walkthrough
+      href: vignettes/Herper.html
+    - text: Outdated GCC
+      href: vignettes/SetupForOutdatedGCC.html
+  right:
+  - text: Getting help!
+    href: https://github.com/RockefellerUniversity/Herper/issues
+  - href: https://twitter.com/Rockefeller_BRC
+    icon: ion-social-twitter
+output:
+  html_document:
+    toc: yes
+    theme: cosmo
+    toc_float: yes
+    highlight: textmate
+

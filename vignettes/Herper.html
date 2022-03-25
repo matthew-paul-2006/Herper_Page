@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Matt Paul - mpaul@rockefeller.edu" />
+
+<meta name="date" content="2022-03-24" />
+
+<title>Herper Guide</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Herper</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Guides
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="vignettes/Herper.html">Walkthrough</a>
+    </li>
+    <li>
+      <a href="vignettes/SetupForOutdatedGCC.html">Outdated GCC</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/RockefellerUniversity/Herper/issues">Getting help!</a>
+</li>
+<li>
+  <a href="https://twitter.com/Rockefeller_BRC">
+    <span class="ion ion-social-twitter"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Herper Guide</h1>
+<h4 class="author">Matt Paul - <a href="mailto:mpaul@rockefeller.edu"
+class="email">mpaul@rockefeller.edu</a></h4>
+<h4 class="date">03/24/2022</h4>
+
+</div>
+
+
+<p><br></p>
+<hr />
+<div id="what-is-herper" class="section level2">
+<h2>What is Herper?</h2>
+<p>The Herper package is a simple toolset to install and manage Conda
+packages and environments from within the R console.</p>
+<p>Unfortunately many tools for data analysis are not available in R,
+but are present in public repositories like conda. With Herper users can
+install, manage, record and run conda tools from the comfort of their R
+session.</p>
+<p>Furthermore, many R packages require the use of these external
+dependencies. Again these dependencies can be installed and managed with
+the Conda package repository. For example 169 Bioconductor packages have
+external dependencies listed in their System Requirements field (often
+with these packages having several requirements) [03 September,
+2020].</p>
+<p><br></p>
+<p><img src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/Herper/extdata/pkg_deps_bar_mask-1.png" width="1000px" style="display: block; margin: auto;" /></p>
+<p>Herper provides an ad-hoc approach to handling external system
+requirements for R packages. For people developing packages with python
+conda dependencies we recommend using <a
+href="https://bioconductor.org/packages/release/bioc/html/basilisk.html">basilisk</a>
+to internally support these system requirements pre-hoc.</p>
+<p>The Herper package was developed by <a
+href="https://github.com/matthew-paul-2006">Matt Paul</a>, <a
+href="https://github.com/dougbarrows">Doug Barrows</a> and <a
+href="https://github.com/ThomasCarroll">Thomas Carroll</a> at the <a
+href="https://rockefelleruniversity.github.io">Rockefeller University
+Bioinformatics Resources Center</a> with contributions from <a
+href="https://github.com/kathrynrozengagnon">Kathryn
+Rozen-Gagnon</a>.</p>
+<p><br></p>
+</div>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>Use the <code>BiocManager</code> package to download and install the
+package from our Github repository:</p>
+<pre class="r"><code>if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE)) {
+      install.packages(&quot;BiocManager&quot;)
+  }
+BiocManager::install(&quot;Herper&quot;)</code></pre>
+<p><br> Once installed, load it into your R session:</p>
+<pre class="r"><code>library(Herper)</code></pre>
+<pre><code>## Warning: package &#39;reticulate&#39; was built under R version 4.1.2</code></pre>
+<p><br></p>
+</div>
+<div
+id="simple-install-of-conda-packages-from-r-console-using-install_condatools."
+class="section level2">
+<h2>Simple install of Conda packages from R console using
+<strong>install_CondaTools</strong>.</h2>
+<p>The <strong>install_CondaTools()</strong> function allows the user to
+specify required Conda software and the desired environment to install
+into.</p>
+<p>Miniconda is installed as part of the process (by default into the
+r-reticulate’s default Conda location -
+/Users/mattpaul/Library/r-miniconda) and the user’s requested conda
+environment built within the same directory (by default
+/Users/mattpaul/Library/r-miniconda/envs/USERS_ENVIRONMENT_HERE).</p>
+<p>If you already have Miniconda installed or you would like to install
+to a custom location, you can specify the path with the
+<em>pathToMiniConda</em> parameter. In this example we are installing in
+a temporary directory, but most likely you will want to install/use a
+stable version of Miniconda.</p>
+<pre class="r"><code>myMiniconda &lt;- file.path(tempdir2(), &quot;Test&quot;)
+myMiniconda</code></pre>
+<pre><code>## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test&quot;</code></pre>
+<pre class="r"><code>install_CondaTools(&quot;samtools&quot;, &quot;herper&quot;, pathToMiniConda = myMiniconda)</code></pre>
+<pre><code>## $pathToConda
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/bin/conda&quot;
+## 
+## $environment
+## [1] &quot;herper&quot;
+## 
+## $pathToEnvBin
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/envs/herper/bin&quot;</code></pre>
+<p><br> We can add additional tools to our Conda environment by
+specifying <em>updateEnv = TRUE</em>. A vector of tools can be used to
+install several at once.</p>
+<pre class="r"><code>pathToConda &lt;- install_CondaTools(c(&quot;salmon&quot;, &quot;kallisto&quot;), &quot;herper&quot;, updateEnv = TRUE, pathToMiniConda = myMiniconda)
+
+pathToConda</code></pre>
+<pre><code>## $pathToConda
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/bin/conda&quot;
+## 
+## $environment
+## [1] &quot;herper&quot;
+## 
+## $pathToEnvBin
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/envs/herper/bin&quot;</code></pre>
+<p><br> Specific package versions can be installed using conda formatted
+inputs into the <em>tools</em> argument i.e. “salmon==1.3”,
+“salmon&gt;=1.3” or “salmon&lt;=1.3”. This can also be used to
+specifically upgrade or downgrade existing tools in the chosen
+environment.</p>
+<pre class="r"><code>pathToConda &lt;- install_CondaTools(&quot;salmon&lt;=1.3&quot;, &quot;herper&quot;, updateEnv = TRUE, pathToMiniConda = myMiniconda)</code></pre>
+<p><br></p>
+</div>
+<div id="install-r-package-dependencies-with-install_condasysreqs."
+class="section level2">
+<h2>Install R package dependencies with
+<strong>install_CondaSysReqs</strong>.</h2>
+<p>The <strong>install_CondaSysReqs</strong> checks the System
+Requirements for the specified R package, and uses Conda to install this
+software. Here we will use a test package contained within Herper. This
+test package has two System Requirements:</p>
+<pre class="r"><code>testPkg &lt;- system.file(&quot;extdata/HerperTestPkg&quot;, package = &quot;Herper&quot;)
+install.packages(testPkg, type = &quot;source&quot;, repos = NULL)
+utils::packageDescription(&quot;HerperTestPkg&quot;, fields = &quot;SystemRequirements&quot;)</code></pre>
+<pre><code>## [1] &quot;samtools==1.10, rmats&gt;=v4.1.0&quot;</code></pre>
+<p>The user can simply supply the name of an installed R package, and
+<strong>install_CondaSysReqs</strong> will install the System
+Requirements through conda.</p>
+<pre class="r"><code>install_CondaSysReqs(&quot;HerperTestPkg&quot;, pathToMiniConda = myMiniconda)</code></pre>
+<pre><code>## $pathToConda
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/bin/conda&quot;
+## 
+## $environment
+## [1] &quot;HerperTestPkg_0.1.0&quot;
+## 
+## $pathToEnvBin
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/envs/HerperTestPkg_0.1.0/bin&quot;</code></pre>
+<p>By default these packages are installed in a new environment, which
+has the name name of the R package and its version number. Users can
+control the environment name using the <em>env</em> parameter. As with
+<strong>install_CondaTools()</strong>, user can control which version of
+Miniconda with the parameter <em>pathToMiniConda</em>, and whether they
+want to amend an existing environment with the parameter
+<em>updateEnv</em>.</p>
+<p><em>Note: <strong>install_CondaSysReqs</strong> can handle standard
+System Requirement formats, but will not work if the package has free
+form text. In this case just use
+<strong>install_CondaTools</strong></em></p>
+<p><br></p>
+</div>
+<div
+id="using-external-software-with-the-with_condaenv-and-local_condaenv-functions."
+class="section level2">
+<h2>Using external software with the <strong>with_CondaEnv</strong> and
+<strong>local_CondaEnv</strong> functions.</h2>
+<p>Once installed within a conda environment, many external software can
+be executed directly from the conda environment’s bin directory without
+having to perform any additional actions.</p>
+<pre class="r"><code>pathToSamtools &lt;- file.path(pathToConda$pathToEnvBin,&quot;samtools&quot;)
+Res &lt;- system2(command=pathToSamtools, args = &quot;help&quot;,stdout = TRUE)
+Res</code></pre>
+<pre><code>## 
+## Program: samtools (Tools for alignments in the SAM format)
+## Version: 1.15 (using htslib 1.15)
+## 
+## Usage:   samtools &lt;command&gt; [options]
+## 
+## Commands:
+##   -- Indexing
+##      dict           create a sequence dictionary file
+##      faidx          index/extract FASTA
+##      fqidx          index/extract FASTQ
+##      index          index alignment
+## 
+##   -- Editing
+##      calmd          recalculate MD/NM tags and &#39;=&#39; bases
+##      fixmate        fix mate information
+##      reheader       replace BAM header
+##      targetcut      cut fosmid regions (for fosmid pool only)
+##      addreplacerg   adds or replaces RG tags
+##      markdup        mark duplicates
+##      ampliconclip   clip oligos from the end of reads
+## 
+##   -- File operations
+##      collate        shuffle and group alignments by name
+##      cat            concatenate BAMs
+##      consensus      produce a consensus Pileup/FASTA/FASTQ
+##      merge          merge sorted alignments
+##      mpileup        multi-way pileup
+##      sort           sort alignment file
+##      split          splits a file by read group
+##      quickcheck     quickly check if SAM/BAM/CRAM file appears intact
+##      fastq          converts a BAM to a FASTQ
+##      fasta          converts a BAM to a FASTA
+##      import         Converts FASTA or FASTQ files to SAM/BAM/CRAM
+## 
+##   -- Statistics
+##      bedcov         read depth per BED region
+##      coverage       alignment depth and percent coverage
+##      depth          compute the depth
+##      flagstat       simple stats
+##      idxstats       BAM index stats
+##      phase          phase heterozygotes
+##      stats          generate stats (former bamcheck)
+##      ampliconstats  generate amplicon specific stats
+## 
+##   -- Viewing
+##      flags          explain BAM flags
+##      head           header viewer
+##      tview          text alignment viewer
+##      view           SAM&lt;-&gt;BAM&lt;-&gt;CRAM conversion
+##      depad          convert padded BAM to unpadded BAM
+##      samples        list the samples in a set of SAM/BAM/CRAM files
+## 
+##   -- Misc
+##      help [cmd]     display this help message or help for [cmd]
+##      version        detailed version information</code></pre>
+<p>Some external software however require additional environmental
+variable to be set in order to execute correctly. An example of this
+would be <strong>Cytoscape</strong> which requires the java home
+directory and java library paths to be set prior to its execution.</p>
+<p>The Herper package uses the <strong><a
+href="https://withr.r-lib.org">withr</a></strong> family of functions
+(<strong>with_CondaEnv()</strong> and <strong>local_CondaEnv()</strong>)
+to provide methods to <strong>temporarily</strong> alter the system PATH
+and to add or update any required environmental variables. This is done
+without formally activating your environment or initializing your
+conda.</p>
+<p>The <strong>with_CondaEnv</strong> allows users to run R code with
+the required PATH and environmental variables automatically set. The
+<strong>with_CondaEnv</strong> function simply requires the name of
+conda environment and the code to be executed within this environment.
+Additionally we can also the <strong>pathToMiniconda</strong> argument
+to specify any custom miniconda install location.</p>
+<p>The <strong>with_CondaEnv</strong> function will update the PATH we
+can now run the above samtools command without specifying the full
+directory path to samtools.</p>
+<pre class="r"><code>res &lt;- with_CondaEnv(&quot;herper&quot;,
+                      system2(command=&quot;samtools&quot;,args = &quot;help&quot;,stdout = TRUE),
+                      pathToMiniConda=myMiniconda)
+res</code></pre>
+<pre><code>## 
+## Program: samtools (Tools for alignments in the SAM format)
+## Version: 1.15 (using htslib 1.15)
+## 
+## Usage:   samtools &lt;command&gt; [options]
+## 
+## Commands:
+##   -- Indexing
+##      dict           create a sequence dictionary file
+##      faidx          index/extract FASTA
+##      fqidx          index/extract FASTQ
+##      index          index alignment
+## 
+##   -- Editing
+##      calmd          recalculate MD/NM tags and &#39;=&#39; bases
+##      fixmate        fix mate information
+##      reheader       replace BAM header
+##      targetcut      cut fosmid regions (for fosmid pool only)
+##      addreplacerg   adds or replaces RG tags
+##      markdup        mark duplicates
+##      ampliconclip   clip oligos from the end of reads
+## 
+##   -- File operations
+##      collate        shuffle and group alignments by name
+##      cat            concatenate BAMs
+##      consensus      produce a consensus Pileup/FASTA/FASTQ
+##      merge          merge sorted alignments
+##      mpileup        multi-way pileup
+##      sort           sort alignment file
+##      split          splits a file by read group
+##      quickcheck     quickly check if SAM/BAM/CRAM file appears intact
+##      fastq          converts a BAM to a FASTQ
+##      fasta          converts a BAM to a FASTA
+##      import         Converts FASTA or FASTQ files to SAM/BAM/CRAM
+## 
+##   -- Statistics
+##      bedcov         read depth per BED region
+##      coverage       alignment depth and percent coverage
+##      depth          compute the depth
+##      flagstat       simple stats
+##      idxstats       BAM index stats
+##      phase          phase heterozygotes
+##      stats          generate stats (former bamcheck)
+##      ampliconstats  generate amplicon specific stats
+## 
+##   -- Viewing
+##      flags          explain BAM flags
+##      head           header viewer
+##      tview          text alignment viewer
+##      view           SAM&lt;-&gt;BAM&lt;-&gt;CRAM conversion
+##      depad          convert padded BAM to unpadded BAM
+##      samples        list the samples in a set of SAM/BAM/CRAM files
+## 
+##   -- Misc
+##      help [cmd]     display this help message or help for [cmd]
+##      version        detailed version information</code></pre>
+<p>The <strong>local_CondaEnv</strong> function acts in a similar
+fashion to the <strong>with_CondaEnv</strong> function and allows the
+user to temporarily update the required PATH and environmental variable
+from within a function. The PATH and environmental variables will be
+modified only until the current function ends.</p>
+<p><strong>local_CondaEnv</strong> is best used within a user-created
+function, allowing access to the Conda environment’s PATH and variables
+from within the the function itself but resetting all environmental
+variables once complete.</p>
+<pre class="r"><code>samtoolsHelp &lt;- function(){
+  local_CondaEnv(&quot;herper&quot;, pathToMiniConda=myMiniconda)
+  helpMessage &lt;- system2(command=&quot;samtools&quot;,args = &quot;help&quot;,stdout = TRUE)
+  helpMessage
+}
+samtoolsHelp()</code></pre>
+<pre><code>## 
+## Program: samtools (Tools for alignments in the SAM format)
+## Version: 1.15 (using htslib 1.15)
+## 
+## Usage:   samtools &lt;command&gt; [options]
+## 
+## Commands:
+##   -- Indexing
+##      dict           create a sequence dictionary file
+##      faidx          index/extract FASTA
+##      fqidx          index/extract FASTQ
+##      index          index alignment
+## 
+##   -- Editing
+##      calmd          recalculate MD/NM tags and &#39;=&#39; bases
+##      fixmate        fix mate information
+##      reheader       replace BAM header
+##      targetcut      cut fosmid regions (for fosmid pool only)
+##      addreplacerg   adds or replaces RG tags
+##      markdup        mark duplicates
+##      ampliconclip   clip oligos from the end of reads
+## 
+##   -- File operations
+##      collate        shuffle and group alignments by name
+##      cat            concatenate BAMs
+##      consensus      produce a consensus Pileup/FASTA/FASTQ
+##      merge          merge sorted alignments
+##      mpileup        multi-way pileup
+##      sort           sort alignment file
+##      split          splits a file by read group
+##      quickcheck     quickly check if SAM/BAM/CRAM file appears intact
+##      fastq          converts a BAM to a FASTQ
+##      fasta          converts a BAM to a FASTA
+##      import         Converts FASTA or FASTQ files to SAM/BAM/CRAM
+## 
+##   -- Statistics
+##      bedcov         read depth per BED region
+##      coverage       alignment depth and percent coverage
+##      depth          compute the depth
+##      flagstat       simple stats
+##      idxstats       BAM index stats
+##      phase          phase heterozygotes
+##      stats          generate stats (former bamcheck)
+##      ampliconstats  generate amplicon specific stats
+## 
+##   -- Viewing
+##      flags          explain BAM flags
+##      head           header viewer
+##      tview          text alignment viewer
+##      view           SAM&lt;-&gt;BAM&lt;-&gt;CRAM conversion
+##      depad          convert padded BAM to unpadded BAM
+##      samples        list the samples in a set of SAM/BAM/CRAM files
+## 
+##   -- Misc
+##      help [cmd]     display this help message or help for [cmd]
+##      version        detailed version information</code></pre>
+<p>To further demonstrate this we will use the first command from the <a
+href="https://www.bioconductor.org/packages/release/bioc/html/seqCNA.html">seqCNA</a>
+vignette. This step requires samtools. If this is not installed and
+available there is an error.</p>
+<pre class="r"><code>library(seqCNA)</code></pre>
+<pre><code>## Warning: package &#39;doSNOW&#39; was built under R version 4.1.2</code></pre>
+<pre><code>## Warning: package &#39;foreach&#39; was built under R version 4.1.2</code></pre>
+<pre><code>## Warning: package &#39;iterators&#39; was built under R version 4.1.2</code></pre>
+<pre><code>## Warning: package &#39;MASS&#39; was built under R version 4.1.2</code></pre>
+<pre class="r"><code>data(seqsumm_HCC1143)
+try(rco &lt;- readSeqsumm(tumour.data = seqsumm_HCC1143), silent = FALSE)</code></pre>
+<p>Samtools is listed as a System Requirement for seqCNA, so we can
+first use <strong>install_CondaSysReqs()</strong> to install samtools.
+In this case we are installing samtools in the environment: seqCNA_env.
+We can then run the seqCNA command using <strong>with_CondaEnv</strong>
+specifying that we want to use our environment containing samtools.
+seqCNA can then find samtools and execute successfully.</p>
+<pre class="r"><code>install_CondaSysReqs(pkg=&quot;seqCNA&quot;,env=&quot;seqCNA_env&quot;,pathToMiniConda=myMiniconda)
+rco &lt;- with_CondaEnv(new=&quot;seqCNA_env&quot;,readSeqsumm(tumour.data=seqsumm_HCC1143)
+ ,pathToMiniConda = myMiniconda)
+summary(rco)</code></pre>
+<pre><code>## Basic information:
+##   SeqCNAInfo object with 5314 200Kbp-long windows.
+##   PEM information is not available.
+##   Paired normal is not available.
+##   Genome and build unknown (chromosomes chr1 to chr5).
+## The profile is not yet normalized and not yet segmented.</code></pre>
+<p><br></p>
+</div>
+<div id="finding-conda-packages-with-conda_search"
+class="section level2">
+<h2>Finding Conda packages with <strong>conda_search</strong></h2>
+<p>If the user is unsure of the exact name, or version of a tool
+available on conda, they can use the <strong>conda_search</strong>
+function.</p>
+<pre class="r"><code>conda_search(&quot;salmon&quot;, pathToMiniConda = myMiniconda)</code></pre>
+<pre><code>##      name version                                    channel
+## 2  salmon   0.8.2 https://conda.anaconda.org/bioconda/osx-64
+## 3  salmon   0.9.0 https://conda.anaconda.org/bioconda/osx-64
+## 5  salmon   0.9.1 https://conda.anaconda.org/bioconda/osx-64
+## 6  salmon  0.10.0 https://conda.anaconda.org/bioconda/osx-64
+## 7  salmon  0.10.1 https://conda.anaconda.org/bioconda/osx-64
+## 9  salmon  0.10.2 https://conda.anaconda.org/bioconda/osx-64
+## 11 salmon  0.11.3 https://conda.anaconda.org/bioconda/osx-64
+## 12 salmon  0.12.0 https://conda.anaconda.org/bioconda/osx-64
+## 14 salmon  0.13.0 https://conda.anaconda.org/bioconda/osx-64
+## 15 salmon  0.13.1 https://conda.anaconda.org/bioconda/osx-64
+## 17 salmon  0.14.0 https://conda.anaconda.org/bioconda/osx-64
+## 20 salmon  0.14.1 https://conda.anaconda.org/bioconda/osx-64
+## 22 salmon  0.14.2 https://conda.anaconda.org/bioconda/osx-64
+## 23 salmon  0.15.0 https://conda.anaconda.org/bioconda/osx-64
+## 24 salmon   1.0.0 https://conda.anaconda.org/bioconda/osx-64
+## 25 salmon   1.1.0 https://conda.anaconda.org/bioconda/osx-64
+## 26 salmon   1.2.0 https://conda.anaconda.org/bioconda/osx-64
+## 27 salmon   1.2.1 https://conda.anaconda.org/bioconda/osx-64
+## 28 salmon   1.3.0 https://conda.anaconda.org/bioconda/osx-64
+## 30 salmon   1.4.0 https://conda.anaconda.org/bioconda/osx-64
+## 31 salmon   1.5.0 https://conda.anaconda.org/bioconda/osx-64
+## 32 salmon   1.5.1 https://conda.anaconda.org/bioconda/osx-64
+## 33 salmon   1.5.2 https://conda.anaconda.org/bioconda/osx-64
+## 34 salmon   1.6.0 https://conda.anaconda.org/bioconda/osx-64
+## 36 salmon   1.7.0 https://conda.anaconda.org/bioconda/osx-64
+## 38 salmon   1.8.0 https://conda.anaconda.org/bioconda/osx-64</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>Specific package versions can be searched for using the conda format
+i.e. “salmon==1.3”, “salmon&gt;=1.3” or “salmon&lt;=1.3”. Searches will
+also find close matches for incorrect queries. Channels to search in can
+be controlled with <em>channels</em> parameter.</p>
+<pre class="r"><code>conda_search(&quot;salmon&lt;=1.0&quot;, pathToMiniConda = myMiniconda)</code></pre>
+<pre><code>##      name version                                    channel
+## 2  salmon   0.8.2 https://conda.anaconda.org/bioconda/osx-64
+## 3  salmon   0.9.0 https://conda.anaconda.org/bioconda/osx-64
+## 5  salmon   0.9.1 https://conda.anaconda.org/bioconda/osx-64
+## 6  salmon  0.10.0 https://conda.anaconda.org/bioconda/osx-64
+## 7  salmon  0.10.1 https://conda.anaconda.org/bioconda/osx-64
+## 9  salmon  0.10.2 https://conda.anaconda.org/bioconda/osx-64
+## 11 salmon  0.11.3 https://conda.anaconda.org/bioconda/osx-64
+## 12 salmon  0.12.0 https://conda.anaconda.org/bioconda/osx-64
+## 14 salmon  0.13.0 https://conda.anaconda.org/bioconda/osx-64
+## 15 salmon  0.13.1 https://conda.anaconda.org/bioconda/osx-64
+## 17 salmon  0.14.0 https://conda.anaconda.org/bioconda/osx-64
+## 20 salmon  0.14.1 https://conda.anaconda.org/bioconda/osx-64
+## 22 salmon  0.14.2 https://conda.anaconda.org/bioconda/osx-64
+## 23 salmon  0.15.0 https://conda.anaconda.org/bioconda/osx-64</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>conda_search(&quot;salmo&quot;, pathToMiniConda = myMiniconda)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p><br></p>
+</div>
+<div
+id="export-of-conda-environments-to-yaml-files-using-export_condaenv."
+class="section level2">
+<h2>Export of Conda environments to YAML files using
+<strong>export_CondaEnv</strong>.</h2>
+<p>The <strong>export_CondaEnv</strong> function allows the user to
+export the environment information to a <em>.yml</em> file. These
+environment YAML files contain all essential information about the
+package, allowing for reproducibility and easy distribution of Conda
+system configuration for collaboration.</p>
+<pre class="r"><code>yml_name &lt;- paste0(&quot;herper_&quot;, format(Sys.Date(), &quot;%Y%m%d&quot;), &quot;.yml&quot;)
+export_CondaEnv(&quot;herper&quot;, yml_name, pathToMiniConda = myMiniconda)</code></pre>
+<pre><code>## [1] &quot;herper_20220324.yml&quot;</code></pre>
+<p><br></p>
+<p>The YAML export will contain all packages in the environment by
+default. If the user wants to only export the packages that were
+specifically installed and not their dependencies they can use the
+<em>depends</em> paramter.</p>
+<pre class="r"><code>yml_name &lt;- paste0(&quot;herper_nodeps_&quot;, format(Sys.Date(), &quot;%Y%m%d&quot;), &quot;.yml&quot;)
+export_CondaEnv(&quot;herper&quot;, yml_name, depends = FALSE, pathToMiniConda = myMiniconda)</code></pre>
+<pre><code>## [1] &quot;herper_nodeps_20220324.yml&quot;</code></pre>
+<p><br></p>
+</div>
+<div
+id="import-of-conda-environments-from-yaml-files-using-import_condaenv."
+class="section level2">
+<h2>Import of Conda environments from YAML files using
+<strong>import_CondaEnv</strong>.</h2>
+<p>The <strong>import_CondaEnv</strong> function allows the user to
+create a new conda environment from a <em>.yml</em> file. These can be
+previously exported from <strong>export_CondaEnv</strong>, conda, renv
+or manually created.</p>
+<p>Users can simply provide a path to the YAML file for import. They can
+also specify the environment name, but by default the name will be taken
+from the YAML.</p>
+<pre class="r"><code>testYML &lt;- system.file(&quot;extdata/test.yml&quot;,package=&quot;Herper&quot;)
+import_CondaEnv(yml_import=testYML, pathToMiniConda = myMiniconda)</code></pre>
+<p><br></p>
+</div>
+<div id="checking-for-existing-environments-with-list_condaenv"
+class="section level2">
+<h2>Checking for existing environments with
+<strong>list_CondaEnv</strong></h2>
+<p>The <strong>list_CondaEnv</strong> function allows users to check
+what environments already exist within the given conda build.</p>
+<p>If the User is using multiple builds of conda and wants to check
+environments across all them, they can include the parameter
+<em>allCondas = TRUE</em>.</p>
+<pre class="r"><code>list_CondaEnv(pathToMiniConda = myMiniconda)</code></pre>
+<pre><code>##                                                                    conda path                 env
+## 1 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/Rtmp9IoQYN/rr/Test                base
+## 2 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/Rtmp9IoQYN/rr/Test HerperTestPkg_0.1.0
+## 3 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/Rtmp9IoQYN/rr/Test              herper
+## 4 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/Rtmp9IoQYN/rr/Test          seqCNA_env</code></pre>
+<p><br></p>
+</div>
+<div id="checking-for-packages-in-an-environment-with-list_condapkgs"
+class="section level2">
+<h2>Checking for packages in an environment with
+<strong>list_CondaPkgs</strong></h2>
+<p>The <strong>list_CondaPkgs</strong> function allows users to check
+what packages are installed in a given environment.</p>
+<pre class="r"><code>list_CondaPkgs(&quot;herper&quot;, pathToMiniConda = myMiniconda)</code></pre>
+<pre><code>##               name      version     channel platform
+## 1        boost-cpp       1.74.0 conda-forge   osx-64
+## 2            bzip2        1.0.8   pkgs/main   osx-64
+## 3           c-ares       1.18.1   pkgs/main   osx-64
+## 4  ca-certificates    2022.3.18   pkgs/main   osx-64
+## 5             hdf5       1.10.6   pkgs/main   osx-64
+## 6           htslib         1.15    bioconda   osx-64
+## 7              icu         69.1 conda-forge   osx-64
+## 8         kallisto       0.48.0    bioconda   osx-64
+## 9             krb5       1.19.2   pkgs/main   osx-64
+## 10         libcurl       7.82.0 conda-forge   osx-64
+## 11          libcxx       13.0.1 conda-forge   osx-64
+## 12      libdeflate         1.10 conda-forge   osx-64
+## 13         libedit 3.1.20210910   pkgs/main   osx-64
+## 14           libev         4.33   pkgs/main   osx-64
+## 15     libgfortran        3.0.1   pkgs/main   osx-64
+## 16     libjemalloc        5.2.1 conda-forge   osx-64
+## 17      libnghttp2       1.47.0 conda-forge   osx-64
+## 18         libssh2       1.10.0 conda-forge   osx-64
+## 19         libzlib       1.2.11 conda-forge   osx-64
+## 20           lz4-c        1.9.3   pkgs/main   osx-64
+## 21         ncurses          6.3   pkgs/main   osx-64
+## 22         openssl       1.1.1n   pkgs/main   osx-64
+## 23          salmon       0.14.2    bioconda   osx-64
+## 24        samtools         1.15    bioconda   osx-64
+## 25             tbb     2021.5.0   pkgs/main   osx-64
+## 26              xz        5.2.5   pkgs/main   osx-64
+## 27            zlib       1.2.11 conda-forge   osx-64
+## 28            zstd        1.5.0   pkgs/main   osx-64</code></pre>
+<p><br> <br></p>
+</div>
+<div id="acknowledgements" class="section level2">
+<h2>Acknowledgements</h2>
+<p>Thank you to Ji-Dung Luo and Wei Wang for testing/vignette
+review/critical feedback and Ziwei Liang for their support.</p>
+<p><br></p>
+</div>
+<div id="session-information" class="section level2">
+<h2>Session Information</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>## R version 4.1.0 (2021-05-18)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS 12.2.1
+## 
+## Matrix products: default
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] seqCNA_1.38.0       seqCNA.annot_1.28.0 adehabitatLT_0.3.25 CircStats_0.2-6    
+##  [5] boot_1.3-28         MASS_7.3-55         adehabitatMA_0.3.14 ade4_1.7-18        
+##  [9] sp_1.4-6            doSNOW_1.0.20       snow_0.4-4          iterators_1.0.14   
+## [13] foreach_1.5.2       GLAD_2.56.0         Herper_1.1.2        reticulate_1.24    
+## [17] rmarkdown_2.11      yaml_2.2.2          ymlthis_0.1.5       magrittr_2.0.2     
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_1.0.8       bslib_0.3.1      compiler_4.1.0   jquerylib_0.1.4  highr_0.9       
+##  [6] tools_4.1.0      digest_0.6.29    jsonlite_1.7.3   evaluate_0.14    lattice_0.20-45 
+## [11] png_0.1-7        rlang_1.0.1      Matrix_1.4-0     cli_3.1.1        parallel_4.1.0  
+## [16] xfun_0.29        fastmap_1.1.0    withr_2.4.3      stringr_1.4.0    knitr_1.37      
+## [21] sass_0.4.0       grid_4.1.0       R6_2.5.1         purrr_0.3.4      codetools_0.2-18
+## [26] htmltools_0.5.2  stringi_1.7.6    rjson_0.2.21</code></pre>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

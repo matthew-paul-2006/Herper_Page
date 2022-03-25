@@ -1,0 +1,85 @@
+---
+title: "Herper Quick Start Guide"
+author: "Matt Paul - mpaul@rockefeller.edu"
+date: "`r format(Sys.Date(), '%m/%d/%Y')`"
+package: Herper
+output:
+ BiocStyle::html_document:
+  number_sections: yes
+  toc: true
+vignette: >
+  %\VignetteIndexEntry{Quick Start}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r setup, echo=FALSE, results="hide", include = FALSE}
+knitr::opts_chunk$set(tidy=FALSE, cache=FALSE,
+                      #dev="png",
+                      message=FALSE, error=FALSE, warning=TRUE)
+options(width=100)
+```
+
+<br>
+
+
+
+The Herper package is a simple toolset to install and manage Conda packages and environments from R.
+ 
+ 
+The Herper package was developed by [Matt Paul](https://github.com/matthew-paul-2006), [Doug Barrows](https://github.com/dougbarrows) and [Thomas Carroll](https://github.com/ThomasCarroll) at the [Rockefeller University Bioinformatics Resources Center](https://rockefelleruniversity.github.io) with contributions from [Kathryn Rozen-Gagnon](https://github.com/kathrynrozengagnon).
+
+______
+ 
+ 
+## Installation
+
+Use the `BiocManager` package to download and install the package from our Github repository:
+
+```{r getPackage, eval=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("Herper")
+```
+
+Once installed, load it into your R session:
+
+```{r}
+library(Herper)
+```
+
+
+## Install Conda packages with **install_CondaTools**. 
+
+The **install_CondaTools()** function allows the user to specify required Conda software and the desired environment to install into.
+
+Miniconda is installed as part of the process (by default into the r-reticulate's default Conda location). If you already have Miniconda installed (or want to control the location of miniconda installation), you can specify the path with the *pathToMiniConda* parameter.
+
+
+```{r install_Condatools, echo=T, eval=F}
+myMiniconda <- file.path(tempdir(),"Test")
+install_CondaTools("salmon==1.3.0", "herper", pathToMiniConda = myMiniconda)
+```
+
+## Install R package dependencies with **install_CondaSysReqs**. 
+The **install_CondaSysReqs** checks the System Requirements for the specified R package, and uses Conda to install this software.
+
+```{r install_CondaSysReqs, eval=F}
+testPkg <- system.file("extdata/HerperTestPkg",package="Herper")
+install.packages(testPkg,type = "source",repos = NULL)
+condaDir <- file.path(tempdir(),"r-miniconda")
+condaPaths <- install_CondaSysReqs("HerperTestPkg",pathToMiniConda=condaDir,SysReqsAsJSON=FALSE)
+#' system2(file.path(condaPaths$pathToEnvBin,"samtools"),args = "--help")
+
+```
+
+## Acknowledgements
+Thank you to Ji-Dung Luo and Wei Wang for testing/vignette review/critical feedback and Ziwei Liang for their support.
+
+## Session Information
+
+```{r sessionInfo}
+sessionInfo()
+```
+

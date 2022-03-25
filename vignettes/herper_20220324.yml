@@ -1,0 +1,35 @@
+name: herper
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - boost-cpp=1.74.0=hf3dc895_5
+  - bzip2=1.0.8=h1de35cc_0
+  - c-ares=1.18.1=hca72f7f_0
+  - ca-certificates=2022.3.18=hecd8cb5_0
+  - hdf5=1.10.6=hdbbcd12_0
+  - htslib=1.15=hc057d7f_0
+  - icu=69.1=he49afe7_0
+  - kallisto=0.48.0=hff76c5f_1
+  - krb5=1.19.2=hcd88c3b_0
+  - libcurl=7.82.0=h9f20792_0
+  - libcxx=13.0.1=hc203e6f_0
+  - libdeflate=1.10=h0d85af4_0
+  - libedit=3.1.20210910=hca72f7f_0
+  - libev=4.33=h9ed2024_1
+  - libgfortran=3.0.1=h93005f0_2
+  - libjemalloc=5.2.1=he49afe7_6
+  - libnghttp2=1.47.0=h942079c_0
+  - libssh2=1.10.0=h52ee1ee_2
+  - libzlib=1.2.11=h9173be1_1013
+  - lz4-c=1.9.3=h23ab428_1
+  - ncurses=6.3=hca72f7f_2
+  - openssl=1.1.1n=hca72f7f_0
+  - salmon=0.14.2=ha956f45_0
+  - samtools=1.15=h9f30945_1
+  - tbb=2021.5.0=haf03e11_0
+  - xz=5.2.5=h1de35cc_0
+  - zlib=1.2.11=h9173be1_1013
+  - zstd=1.5.0=hcb37349_1
+prefix: /var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/Rtmp9IoQYN/rr/Test/envs/herper
