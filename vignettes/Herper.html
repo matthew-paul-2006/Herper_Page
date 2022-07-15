@@ -11,7 +11,7 @@
 
 <meta name="author" content="Matt Paul - mpaul@rockefeller.edu" />
 
-<meta name="date" content="2022-03-24" />
+<meta name="date" content="2022-03-29" />
 
 <title>Herper Guide</title>
 
@@ -321,7 +321,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="../index.html">Home</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -331,10 +331,10 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="vignettes/Herper.html">Walkthrough</a>
+      <a href="Herper.html">Walkthrough</a>
     </li>
     <li>
-      <a href="vignettes/SetupForOutdatedGCC.html">Outdated GCC</a>
+      <a href="SetupForOutdatedGCC.html">Outdated GCC</a>
     </li>
   </ul>
 </li>
@@ -361,7 +361,7 @@ div.tocify {
 <h1 class="title toc-ignore">Herper Guide</h1>
 <h4 class="author">Matt Paul - <a href="mailto:mpaul@rockefeller.edu"
 class="email">mpaul@rockefeller.edu</a></h4>
-<h4 class="date">03/24/2022</h4>
+<h4 class="date">03/29/2022</h4>
 
 </div>
 
@@ -432,16 +432,16 @@ a temporary directory, but most likely you will want to install/use a
 stable version of Miniconda.</p>
 <pre class="r"><code>myMiniconda &lt;- file.path(tempdir2(), &quot;Test&quot;)
 myMiniconda</code></pre>
-<pre><code>## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test&quot;</code></pre>
+<pre><code>## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//RtmpBk134k/rr/Test&quot;</code></pre>
 <pre class="r"><code>install_CondaTools(&quot;samtools&quot;, &quot;herper&quot;, pathToMiniConda = myMiniconda)</code></pre>
 <pre><code>## $pathToConda
-## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/bin/conda&quot;
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//RtmpBk134k/rr/Test/bin/conda&quot;
 ## 
 ## $environment
 ## [1] &quot;herper&quot;
 ## 
 ## $pathToEnvBin
-## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/envs/herper/bin&quot;</code></pre>
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//RtmpBk134k/rr/Test/envs/herper/bin&quot;</code></pre>
 <p><br> We can add additional tools to our Conda environment by
 specifying <em>updateEnv = TRUE</em>. A vector of tools can be used to
 install several at once.</p>
@@ -449,13 +449,13 @@ install several at once.</p>
 
 pathToConda</code></pre>
 <pre><code>## $pathToConda
-## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/bin/conda&quot;
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//RtmpBk134k/rr/Test/bin/conda&quot;
 ## 
 ## $environment
 ## [1] &quot;herper&quot;
 ## 
 ## $pathToEnvBin
-## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/envs/herper/bin&quot;</code></pre>
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//RtmpBk134k/rr/Test/envs/herper/bin&quot;</code></pre>
 <p><br> Specific package versions can be installed using conda formatted
 inputs into the <em>tools</em> argument i.e. “salmon==1.3”,
 “salmon&gt;=1.3” or “salmon&lt;=1.3”. This can also be used to
@@ -481,13 +481,13 @@ utils::packageDescription(&quot;HerperTestPkg&quot;, fields = &quot;SystemRequir
 Requirements through conda.</p>
 <pre class="r"><code>install_CondaSysReqs(&quot;HerperTestPkg&quot;, pathToMiniConda = myMiniconda)</code></pre>
 <pre><code>## $pathToConda
-## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/bin/conda&quot;
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//RtmpBk134k/rr/Test/bin/conda&quot;
 ## 
 ## $environment
 ## [1] &quot;HerperTestPkg_0.1.0&quot;
 ## 
 ## $pathToEnvBin
-## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//Rtmp9IoQYN/rr/Test/envs/HerperTestPkg_0.1.0/bin&quot;</code></pre>
+## [1] &quot;/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T//RtmpBk134k/rr/Test/envs/HerperTestPkg_0.1.0/bin&quot;</code></pre>
 <p>By default these packages are installed in a new environment, which
 has the name name of the R package and its version number. Users can
 control the environment name using the <em>env</em> parameter. As with
@@ -820,7 +820,7 @@ package, allowing for reproducibility and easy distribution of Conda
 system configuration for collaboration.</p>
 <pre class="r"><code>yml_name &lt;- paste0(&quot;herper_&quot;, format(Sys.Date(), &quot;%Y%m%d&quot;), &quot;.yml&quot;)
 export_CondaEnv(&quot;herper&quot;, yml_name, pathToMiniConda = myMiniconda)</code></pre>
-<pre><code>## [1] &quot;herper_20220324.yml&quot;</code></pre>
+<pre><code>## [1] &quot;herper_20220329.yml&quot;</code></pre>
 <p><br></p>
 <p>The YAML export will contain all packages in the environment by
 default. If the user wants to only export the packages that were
@@ -828,7 +828,7 @@ specifically installed and not their dependencies they can use the
 <em>depends</em> paramter.</p>
 <pre class="r"><code>yml_name &lt;- paste0(&quot;herper_nodeps_&quot;, format(Sys.Date(), &quot;%Y%m%d&quot;), &quot;.yml&quot;)
 export_CondaEnv(&quot;herper&quot;, yml_name, depends = FALSE, pathToMiniConda = myMiniconda)</code></pre>
-<pre><code>## [1] &quot;herper_nodeps_20220324.yml&quot;</code></pre>
+<pre><code>## [1] &quot;herper_nodeps_20220329.yml&quot;</code></pre>
 <p><br></p>
 </div>
 <div
@@ -858,10 +858,10 @@ environments across all them, they can include the parameter
 <em>allCondas = TRUE</em>.</p>
 <pre class="r"><code>list_CondaEnv(pathToMiniConda = myMiniconda)</code></pre>
 <pre><code>##                                                                    conda path                 env
-## 1 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/Rtmp9IoQYN/rr/Test                base
-## 2 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/Rtmp9IoQYN/rr/Test HerperTestPkg_0.1.0
-## 3 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/Rtmp9IoQYN/rr/Test              herper
-## 4 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/Rtmp9IoQYN/rr/Test          seqCNA_env</code></pre>
+## 1 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/RtmpBk134k/rr/Test                base
+## 2 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/RtmpBk134k/rr/Test HerperTestPkg_0.1.0
+## 3 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/RtmpBk134k/rr/Test              herper
+## 4 /private/var/folders/zy/x35d37h50sq2_fp3zrjydcl00000gn/T/RtmpBk134k/rr/Test          seqCNA_env</code></pre>
 <p><br></p>
 </div>
 <div id="checking-for-packages-in-an-environment-with-list_condapkgs"
@@ -932,12 +932,16 @@ review/critical feedback and Ziwei Liang for their support.</p>
 ## [17] rmarkdown_2.11      yaml_2.2.2          ymlthis_0.1.5       magrittr_2.0.2     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.8       bslib_0.3.1      compiler_4.1.0   jquerylib_0.1.4  highr_0.9       
-##  [6] tools_4.1.0      digest_0.6.29    jsonlite_1.7.3   evaluate_0.14    lattice_0.20-45 
-## [11] png_0.1-7        rlang_1.0.1      Matrix_1.4-0     cli_3.1.1        parallel_4.1.0  
-## [16] xfun_0.29        fastmap_1.1.0    withr_2.4.3      stringr_1.4.0    knitr_1.37      
-## [21] sass_0.4.0       grid_4.1.0       R6_2.5.1         purrr_0.3.4      codetools_0.2-18
-## [26] htmltools_0.5.2  stringi_1.7.6    rjson_0.2.21</code></pre>
+##  [1] Rcpp_1.0.8       lattice_0.20-45  tidyr_1.2.0      png_0.1-7        assertthat_0.2.1
+##  [6] digest_0.6.29    utf8_1.2.2       R6_2.5.1         backports_1.4.1  evaluate_0.14   
+## [11] highr_0.9        pillar_1.7.0     rlang_1.0.1      jquerylib_0.1.4  Matrix_1.4-0    
+## [16] stringr_1.4.0    bit_4.0.4        broom_0.7.12     compiler_4.1.0   xfun_0.29       
+## [21] pkgconfig_2.0.3  htmltools_0.5.2  tidyselect_1.1.1 tibble_3.1.6     codetools_0.2-18
+## [26] fansi_1.0.2      crayon_1.4.2     dplyr_1.0.8      tzdb_0.2.0       withr_2.4.3     
+## [31] grid_4.1.0       jsonlite_1.7.3   lifecycle_1.0.1  DBI_1.1.2        cli_3.1.1       
+## [36] stringi_1.7.6    vroom_1.5.7      bslib_0.3.1      ellipsis_0.3.2   vctrs_0.3.8     
+## [41] generics_0.1.2   rjson_0.2.21     tools_4.1.0      bit64_4.0.5      glue_1.6.1      
+## [46] purrr_0.3.4      parallel_4.1.0   fastmap_1.1.0    knitr_1.37       sass_0.4.0</code></pre>
 </div>
 
 
