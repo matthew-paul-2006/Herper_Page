@@ -157,6 +157,7 @@ jobs:
           BiocManager::install("ymlthis")
           BiocManager::install("Herper")
           BiocManager::install("rmarkdown")
+          BiocManager::install("seqCNA")
         shell: Rscript {0}
 
       - name: Session info
