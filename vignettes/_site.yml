@@ -3,13 +3,13 @@ navbar:
   title: Herper
   left:
   - text: Home
-    href: index.html
+    href: ../index.html
   - text: Guides
     menu:
     - text: Walkthrough
-      href: vignettes/Herper.html
+      href: Herper.html
     - text: Outdated GCC
-      href: vignettes/SetupForOutdatedGCC.html
+      href: SetupForOutdatedGCC.html
   right:
   - text: Getting help!
     href: https://github.com/RockefellerUniversity/Herper/issues
