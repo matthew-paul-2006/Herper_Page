@@ -46,8 +46,8 @@ yml_empty() %>%
     left = list(
       navbar_page("Home", href = "../index.html"),
       navbar_page("Guides", menu=list(
-        navbar_page(text="Walkthrough",href="vignettes/Herper.html"),
-        navbar_page(text="Outdated GCC",href="vignettes/SetupForOutdatedGCC.html"))
+        navbar_page(text="Walkthrough",href="Herper.html"),
+        navbar_page(text="Outdated GCC",href="SetupForOutdatedGCC.html"))
         #,
         # navbar_page("Reference",menu=),
         # navbar_page("Change Log",menu=),
