@@ -154,6 +154,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          BiocManager::install("ymlthis")
           BiocManager::install("Herper")
           BiocManager::install("rmarkdown")
         shell: Rscript {0}
@@ -172,7 +173,7 @@ jobs:
 
       - name: commit
         run: |
-          git config --global user.email "tc.infomatics@gmail.com"
+          git config --global user.email "matthew.paul.2006@gmail.com"
           git add .
           git push origin HEAD:refs/heads/master
 
