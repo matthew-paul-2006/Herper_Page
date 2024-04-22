@@ -450,7 +450,12 @@ the required GCC for the installation of ‘reticulate’.</p>
 <p><strong>B. Whole System</strong></p>
 <p>Only do this if you know what you’re doing.</p>
 <p>You can update the paths as above, but do this on the global level by
-modifying your ~/.bash_profile. This will change the GCC used for all
+modifying your ~/.bash_profile and exporting them. </p>
+<pre class="sh"><code>export LD_LIBRARY_PATH=/lustre/fs4/brc/scratch/mpaul/software/gcc/lib:/lustre/fs4/brc/scratch/mpaul/software/gcc/lib64:/lustre/fs4/brc/scratch/mpaul/software/gcc/libexec:[current LD_LIBRARY_PATH]
+export LD_INCLUDE_PATH=/lustre/fs4/brc/scratch/mpaul/software/gcc/include
+export PATH=/lustre/fs4/brc/scratch/mpaul/software/gcc/bin:[current PATH]
+</code></pre>
+<p>This will change the GCC used for all
 processes on your system though so must be done with care and
 consideration.</p>
 </div>
